@@ -23,7 +23,7 @@ public class Player extends Entity {
 
     private void getImage() {
         try {
-            this.playerIcon = ImageIO.read(getClass().getResourceAsStream("/textures/watermelon-char-right.png"));
+            this.playerIcon = ImageIO.read(getClass().getResourceAsStream("/textures/map-textures/watermelon-char-right.png"));
         } catch (IOException e) {e.printStackTrace();}
     }
 
