@@ -9,3 +9,6 @@ Commits 4 and 5 relate to documentation file errors and submitting the wrong fil
 
 #### Commit #3
 Not having a reason to manually set the values of upPressed, downPressed, etc. is another reason as to hide them and practice more encapsulation. I set up getters instead of having the variables public.
+
+#### Commit #7
+In Player.java, getImage() and setStartingValues() have been set to private instead there is no reason that any other class in the project needs access to it. The same was made about all entity's xpos, ypos, and speed. I also made the speed of the player as variable affected by the game's FPS. I plan to incorporate scalability in the future to help with whenever the game's settings are changed. It will also be a possibility to have a speed as a function of game difficulty.

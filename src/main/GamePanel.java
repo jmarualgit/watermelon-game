@@ -2,7 +2,8 @@ package main;
 
 import javax.swing.JPanel;
 
-import java.awt.Color;
+import entity.Player;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -26,11 +27,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     private int FPS = 144;
 
-    private int xPos = 100;
-    private int yPos = 100;
-    private int speed = FPS / 36;
-
     KeyHandler keyHandler = new KeyHandler();
+    Player player = new Player(this, keyHandler);
     Thread gameThread;
 
     GamePanel () {
@@ -77,32 +75,18 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        if (keyHandler.getUpPressed()) {
-            System.out.println("up pressed");
-            this.yPos -= this.speed;
-        }
-
-        if (keyHandler.getDownPressed()) {
-            this.yPos += this.speed;
-        }
-
-        if (keyHandler.getRightPressed()) {
-            this.xPos += this.speed;
-        }
-
-        if (keyHandler.getLeftPressed()) {
-            this.xPos -= this.speed;
-        }
+        player.update();
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D)g;
 
-        graphics2D.setColor(Color.white);
-        graphics2D.fillRect(xPos, yPos, 100, 100);
+        player.paintComponent(graphics2D);
+
         graphics2D.dispose();
     }
     
     public int getFPS() {return this.FPS;}
+    public int getTileSize() {return this.tileSize;}
 }
