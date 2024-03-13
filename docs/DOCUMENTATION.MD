@@ -7,12 +7,12 @@ For the most part, I have the timer set up the same way as RyiSnow, with the sle
 
 Commits 4 and 5 relate to documentation file errors and submitting the wrong file.
 
-### Commit #3
+### Commit #3: Add key input
 Not having a reason to manually set the values of upPressed, downPressed, etc. is another reason as to hide them and practice more encapsulation. I set up getters instead of having the variables public.
 
-### Commit #7
+### Commit #7: Add customizable
 In Player.java, getImage() and setStartingValues() have been set to private instead there is no reason that any other class in the project needs access to it. The same was made about all entity's xpos, ypos, and speed. I also made the speed of the player as variable affected by the game's FPS. I plan to incorporate scalability in the future to help with whenever the game's settings are changed. It will also be a possibility to have a speed as a function of game difficulty.
 
-### Commit #8
+### Commit #10: Draw the whole world
 #### Tile Manager
 In contrast to RyiSnow's tutorial, I added a lot more clarifying variables for my own personal comprehension and so that it was easier for me personally to look at. tileToDraw in the drawWorld() function is extra and wasn't in the tutorial. I have yet to implement the camera function so this commit will just have the top left of the world as the top left is (0,0). I will also implement RyiSnow's method of having the center of (25, 25) (in terms of world01.txt) in probably the next commit.
