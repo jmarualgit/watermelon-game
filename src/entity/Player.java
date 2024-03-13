@@ -13,9 +13,19 @@ public class Player extends Entity {
     GamePanel gamePanel;
     KeyHandler keyHandler;
 
+    final int SCREEN_X_POS;
+    final int SCREEN_Y_POS;
+
+    final int CENTER_IMBALANCE_POS_BUFFER;
+
     public Player (GamePanel gp, KeyHandler kh) {
         this.gamePanel = gp;
         this.keyHandler = kh;
+
+        CENTER_IMBALANCE_POS_BUFFER = gamePanel.getTileSize() / 2;
+
+        SCREEN_X_POS = (gamePanel.getScreenWidth() / 2) - CENTER_IMBALANCE_POS_BUFFER;
+        SCREEN_Y_POS = (gamePanel.getScreenHeight() / 2) - CENTER_IMBALANCE_POS_BUFFER;
 
         setStartingValues();
         getImage();
@@ -23,36 +33,40 @@ public class Player extends Entity {
 
     private void getImage() {
         try {
-            this.playerIcon = ImageIO.read(getClass().getResourceAsStream("/textures/map-textures/watermelon-char-right.png"));
+            this.playerIcon = ImageIO.read(getClass().getResourceAsStream("/textures/player/watermelon-char-right.png"));
         } catch (IOException e) {e.printStackTrace();}
     }
 
     private void setStartingValues() {
-        setXPos(100);
-        setYPos(100);
+        
+        int worldMiddleXPos = gamePanel.getWorldWidth() / 2;
+        int worldMiddleYPos = gamePanel.getWorldHeight() / 2;
+
+        setPlayerWorldXPos(worldMiddleXPos);
+        setPlayerWorldYPos(worldMiddleYPos);
         setSpeed(gamePanel.getFPS() / 48);
     }
 
     public void update() {
         if (keyHandler.getUpPressed()) {
             //System.out.println("up pressed");
-            setYPos(getYPos() - getSpeed());
+            setPlayerWorldYPos(getPlayerWorldYPos() - getSpeed());
         }
 
         if (keyHandler.getDownPressed()) {
-            setYPos(getYPos() + getSpeed());
+            setPlayerWorldYPos(getPlayerWorldYPos() + getSpeed());
         }
 
         if (keyHandler.getRightPressed()) {
-            setXPos(getXPos() + getSpeed());
+            setPlayerWorldXPos(getPlayerWorldXPos() + getSpeed());
         }
 
         if (keyHandler.getLeftPressed()) {
-            setXPos(getXPos() - getSpeed());
+            setPlayerWorldXPos(getPlayerWorldXPos() - getSpeed());
         }
     }
 
     public void paintComponent(Graphics2D graphics2d) {
-        graphics2d.drawImage(this.playerIcon, getXPos(), getYPos(), gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+        graphics2d.drawImage(this.playerIcon, SCREEN_X_POS, SCREEN_Y_POS, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
     }
 }

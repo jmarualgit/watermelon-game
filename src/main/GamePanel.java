@@ -3,6 +3,7 @@ package main;
 import javax.swing.JPanel;
 
 import entity.Player;
+import tile.TileManager;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -17,17 +18,22 @@ public class GamePanel extends JPanel implements Runnable {
     private int tileSize = originalTileSize * scale;
     
     // 4 x 3 resolution
-    private int maxColumns = 16;
-    private int maxRows = 12;
+    private int maxWorldColumns = 50;
+    private int maxWorldRows = 50;
+    private int worldHeight = tileSize * maxWorldColumns;
+    private int worldWidth = tileSize * maxWorldRows;
 
-    private int screenWidth = tileSize * maxColumns;
-    private int screenHeight = tileSize * maxRows;
+    private int screenColumns = 16;
+    private int screenRows = 12;
+    private int screenWidth = tileSize * screenColumns;
+    private int screenHeight = tileSize * screenRows;
 
     private Dimension screenDimension = new Dimension(screenWidth, screenHeight);
 
     private int FPS = 144;
 
     KeyHandler keyHandler = new KeyHandler();
+    TileManager tileManager = new TileManager(this);
     Player player = new Player(this, keyHandler);
     Thread gameThread;
 
@@ -82,11 +88,21 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D)g;
 
+        tileManager.drawWorld(graphics2D);
         player.paintComponent(graphics2D);
 
         graphics2D.dispose();
     }
-    
-    public int getFPS() {return this.FPS;}
+
     public int getTileSize() {return this.tileSize;}
+
+    public int getScreenWidth() {return this.screenWidth;}
+    public int getScreenHeight() {return this.screenHeight;}
+
+    public int getMaxWorldColumns() {return this.maxWorldColumns;}
+    public int getMaxWorldRows() {return this.maxWorldRows;}
+    public int getWorldHeight() {return this.worldHeight;}
+    public int getWorldWidth() {return this.worldWidth;}
+
+    public int getFPS() {return this.FPS;}
 }
