@@ -26,5 +26,5 @@ public abstract class Entity {
     public boolean hasCollided() {return this.hasCollided;}
     public Rectangle getHitbox() {return this.hitbox;}
 
-    protected BufferedImage playerIcon;
+    protected BufferedImage playerIconRight, playerIconLeft;
 }

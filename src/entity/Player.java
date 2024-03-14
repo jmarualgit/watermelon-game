@@ -23,7 +23,8 @@ public class Player extends Entity {
 
     private void getImage() {
         try {
-            this.playerIcon = ImageIO.read(getClass().getResourceAsStream("/textures/player/watermelon-char-right.png"));
+            this.playerIconRight = ImageIO.read(getClass().getResourceAsStream("/textures/player/watermelon-char-right.png"));
+            this.playerIconLeft = ImageIO.read(getClass().getResourceAsStream("/textures/player/watermelon-char-left.png"));
         } catch (IOException e) {e.printStackTrace();}
     }
 
@@ -73,6 +74,10 @@ public class Player extends Entity {
     }
 
     public void paintComponent(Graphics2D graphics2d) {
-        graphics2d.drawImage(this.playerIcon, gamePanel.getScreenXPos(), gamePanel.getScreenYPos(), gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+        if (getDirection() == "right" || getDirection() == "up" || getDirection() == "down") {
+            graphics2d.drawImage(this.playerIconRight, gamePanel.getScreenXPos(), gamePanel.getScreenYPos(), gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+        } else if (getDirection() == "left") {
+            graphics2d.drawImage(this.playerIconLeft, gamePanel.getScreenXPos(), gamePanel.getScreenYPos(), gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+        }
     }
 }
