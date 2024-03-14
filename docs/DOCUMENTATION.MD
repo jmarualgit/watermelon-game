@@ -27,3 +27,6 @@ I also changed from playerWorldX to worldX as I think this would be easier to un
 ### Commit #13: Change renderer to certain boundaries
 #### Tile Manager
 Only big change is making 4 extra lines just to add tileSize. I chose to do this because looking at the original code is confusing at a first glance. Anyone can read and understand with time but I believe this will help me personally (and hopefully others) understand the code more.
+
+### Commit #14: Set collisions
+Basic idea is to check is to make a hitbox smaller than the tile's character because checking tile collisions with a hitbox that is the same size as every other tile will be almost impossible for the user as the pixels need to be aligned. Main thing was to check if the tile the character was gonna enter isCollisionable. If yes, can walk (done through Player.java). I chose not to make setters/getters for the hitbox (only getting the actual hitbox Rectangle itself) as its values can be "setted" or "gotten" just by getting the hitbox.

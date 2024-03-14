@@ -30,20 +30,24 @@ public class TileManager {
 
         //System.out.println(Arrays.deepToString(worldMapTileNumbers));
     }
-    
+
     private void getTileImage() {
         try {
             tileImages[0] = new Tile();
             tileImages[0].setImage(ImageIO.read(getClass().getResourceAsStream("/textures/map-textures/grass.png")));
+            tileImages[0].setCollisionable(false);
 
             tileImages[1] = new Tile();
             tileImages[1].setImage(ImageIO.read(getClass().getResourceAsStream("/textures/map-textures/stone.png")));
+            tileImages[1].setCollisionable(true);
 
             tileImages[2] = new Tile();
             tileImages[2].setImage(ImageIO.read(getClass().getResourceAsStream("/textures/map-textures/water.png")));
+            tileImages[2].setCollisionable(true);
 
             tileImages[3] = new Tile();
             tileImages[3].setImage(ImageIO.read(getClass().getResourceAsStream("/textures/map-textures/tree.png")));
+            tileImages[3].setCollisionable(true);
         } catch (IOException e) {e.printStackTrace();};
     }
 
@@ -145,4 +149,7 @@ public class TileManager {
             }
         }
     }
+
+    public static int getTileNum(int columnNum, int rowNum) {return worldMapTileNumbers[columnNum][rowNum];}
+    public static Tile getTile(int tileNum) {return tileImages[tileNum];}
 }

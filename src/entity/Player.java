@@ -17,6 +17,12 @@ public class Player extends Entity {
         this.gamePanel = gp;
         this.keyHandler = kh;
 
+        // tileSizes are 64px
+        getHitbox().x = gamePanel.getTileSize() / 6;            // 64 / 8 = 8
+        getHitbox().y = gamePanel.getTileSize() / 3;            // 8
+        getHitbox().width = gamePanel.getTileSize() / 3 * 2;    // 64 / 4 = 16; 16 * 2 = 32;
+        getHitbox().height = getHitbox().width;
+
         setStartingValues();
         getImage();
     }
@@ -35,24 +41,38 @@ public class Player extends Entity {
         setWorldXPos(worldMiddleXPos);
         setWorldYPos(worldMiddleYPos);
         setSpeed(gamePanel.getFPS() / 48);
+        setDirection("right");
+        setHasCollided(false);
     }
 
     public void update() {
-        if (keyHandler.getUpPressed()) {
-            //System.out.println("up pressed");
-            setWorldYPos(getWorldYPos() - getSpeed());
-        }
+        if (keyHandler.getUpPressed() || keyHandler.getRightPressed() || keyHandler.getDownPressed() || keyHandler.getLeftPressed()) {
+            // set their directions for collisionCheck to use
+            if (keyHandler.getUpPressed()) {
+                //System.out.println("up pressed");
+                setDirection("up");
+            }
 
-        if (keyHandler.getDownPressed()) {
-            setWorldYPos(getWorldYPos() + getSpeed());
-        }
+            if (keyHandler.getDownPressed()) {setDirection("down");}
 
-        if (keyHandler.getRightPressed()) {
-            setWorldXPos(getWorldXPos() + getSpeed());
-        }
+            if (keyHandler.getRightPressed()) {setDirection("right");}
 
-        if (keyHandler.getLeftPressed()) {
-            setWorldXPos(getWorldXPos() - getSpeed());
+            if (keyHandler.getLeftPressed()) {setDirection("left");}
+
+            setHasCollided(false);
+            gamePanel.getCollisionChecker().checkCollissions(this);
+
+            if (!hasCollided()) {
+                if (keyHandler.getUpPressed()) {
+                    setWorldYPos(getWorldYPos() - getSpeed());
+                }
+                
+                if (keyHandler.getDownPressed()) {setWorldYPos(getWorldYPos() + getSpeed());}
+        
+                if (keyHandler.getRightPressed()) {setWorldXPos(getWorldXPos() + getSpeed());}
+        
+                if (keyHandler.getLeftPressed()) {setWorldXPos(getWorldXPos() - getSpeed());}
+            }
         }
     }
 

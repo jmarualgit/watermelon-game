@@ -38,6 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyHandler = new KeyHandler();
     TileManager tileManager = new TileManager(this);
     Player player = new Player(this, keyHandler);
+    CollisionCheck collisionCheck = new CollisionCheck(this);
     Thread gameThread;
 
     GamePanel () {
@@ -97,6 +98,8 @@ public class GamePanel extends JPanel implements Runnable {
         graphics2D.dispose();
     }
 
+    public CollisionCheck getCollisionChecker() {return this.collisionCheck;}
+
     public int getTileSize() {return this.tileSize;}
 
     public int getScreenWidth() {return this.screenWidth;}
@@ -110,6 +113,8 @@ public class GamePanel extends JPanel implements Runnable {
     public int getWorldWidth() {return this.worldWidth;}
 
     public int getFPS() {return this.FPS;}
+
+    public Player getPlayer() {return this.player;}
 
     public int getPlayerWorldXPos() {return this.player.getWorldXPos();}
     public int getPlayerWorldYPos() {return this.player.getWorldYPos();}
