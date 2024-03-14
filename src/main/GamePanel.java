@@ -28,6 +28,9 @@ public class GamePanel extends JPanel implements Runnable {
     private int screenWidth = tileSize * screenColumns;
     private int screenHeight = tileSize * screenRows;
 
+    private int screenXPos = (screenWidth / 2) - (tileSize / 2);
+    private int screenYPos = (screenHeight / 2) - (tileSize / 2);
+
     private Dimension screenDimension = new Dimension(screenWidth, screenHeight);
 
     private int FPS = 144;
@@ -98,6 +101,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public int getScreenWidth() {return this.screenWidth;}
     public int getScreenHeight() {return this.screenHeight;}
+    public int getScreenYPos() {return this.screenYPos;}
+    public int getScreenXPos() {return this.screenXPos;}
 
     public int getMaxWorldColumns() {return this.maxWorldColumns;}
     public int getMaxWorldRows() {return this.maxWorldRows;}
@@ -105,4 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
     public int getWorldWidth() {return this.worldWidth;}
 
     public int getFPS() {return this.FPS;}
+
+    public int getPlayerWorldXPos() {return this.player.getWorldXPos();}
+    public int getPlayerWorldYPos() {return this.player.getWorldYPos();}
 }

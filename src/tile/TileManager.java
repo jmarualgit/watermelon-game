@@ -108,11 +108,17 @@ public class TileManager {
 
             int tileToDrawAsNumber = worldMapTileNumbers[currentColumnNum][currentRowNum];
             BufferedImage tileToDraw = tileImages[tileToDrawAsNumber].getImage();
-            
-            int xPos = currentColumnNum * gamePanel.getTileSize();
-            int yPos = currentRowNum * gamePanel.getTileSize();
 
-            graphics2D.drawImage(tileToDraw, xPos, yPos, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            // get the tile's xPos in the world as a function of tileSize and column number
+            int tileWorldXPos = gamePanel.getTileSize() * currentColumnNum;
+            int tileWorldYPos = gamePanel.getTileSize() * currentRowNum;
+
+            // [translate]/get the position of the title in reference to the center
+            // tileWorldX/YPos for each tile at [columnNum][rowNum] as well as screenX/YPos stays constant, it is only the the player's worldXPos that deteremines the change
+            int tileScreenXPos = tileWorldXPos + gamePanel.getScreenXPos() - gamePanel.getPlayerWorldXPos();
+            int tileScreenYPos = tileWorldYPos + gamePanel.getScreenYPos() - gamePanel.getPlayerWorldYPos();
+
+            graphics2D.drawImage(tileToDraw, tileScreenXPos, tileScreenYPos, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
 
             currentColumnNum++;
 

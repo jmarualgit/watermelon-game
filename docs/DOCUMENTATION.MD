@@ -16,3 +16,10 @@ In Player.java, getImage() and setStartingValues() have been set to private inst
 ### Commit #10: Draw the whole world
 #### Tile Manager
 In contrast to RyiSnow's tutorial, I added a lot more clarifying variables for my own personal comprehension and so that it was easier for me personally to look at. tileToDraw in the drawWorld() function is extra and wasn't in the tutorial. I have yet to implement the camera function so this commit will just have the top left of the world as the top left is (0,0). I will also implement RyiSnow's method of having the center of (25, 25) (in terms of world01.txt) in probably the next commit.
+
+### Commit #12: Set camera center on player at all times
+#### Tile Manager.java
+No remarkable changes; retained the same practices I had in previous commits pertaining to changes to RyiSnow's tutorial. This was one of the hardest things for me to grasp, specifically about the part about getting the camera to stick onto the player at all times; what really helped me understand it was that it was technically a translation from two POVs, one where the origin (0, 0) is at the player, and the other pov of the origin (0, 0) being the top left of the world (which is what it really is in Java).
+
+#### Entity.java
+I also changed from playerWorldX to worldX as I think this would be easier to understand when making different entities in the future and having entities inherit a playerWorldX even though they're not a player would make no sense.
