@@ -17,12 +17,6 @@ public class Player extends Entity {
         this.gamePanel = gp;
         this.keyHandler = kh;
 
-        // tileSizes are 64px
-        getHitbox().x = gamePanel.getTileSize() / 6;            // 64 / 8 = 8
-        getHitbox().y = gamePanel.getTileSize() / 3;            // 8
-        getHitbox().width = gamePanel.getTileSize() / 3 * 2;    // 64 / 4 = 16; 16 * 2 = 32;
-        getHitbox().height = getHitbox().width;
-
         setStartingValues();
         getImage();
     }
@@ -37,6 +31,12 @@ public class Player extends Entity {
         
         int worldMiddleXPos = (gamePanel.getWorldWidth() / 2) - (gamePanel.getTileSize() / 2);
         int worldMiddleYPos = (gamePanel.getWorldHeight() / 2)  - (gamePanel.getTileSize() / 2);
+
+        // tileSizes are 64px
+        getHitbox().x = gamePanel.getTileSize() / 6;            // 64 / 8 = 8
+        getHitbox().y = gamePanel.getTileSize() / 3;            // 8
+        getHitbox().width = gamePanel.getTileSize() / 3 * 2;    // 64 / 4 = 16; 16 * 2 = 32;
+        getHitbox().height = getHitbox().width;
 
         setWorldXPos(worldMiddleXPos);
         setWorldYPos(worldMiddleYPos);
@@ -54,9 +54,7 @@ public class Player extends Entity {
             }
 
             if (keyHandler.getDownPressed()) {setDirection("down");}
-
             if (keyHandler.getRightPressed()) {setDirection("right");}
-
             if (keyHandler.getLeftPressed()) {setDirection("left");}
 
             setHasCollided(false);
@@ -68,9 +66,7 @@ public class Player extends Entity {
                 }
                 
                 if (keyHandler.getDownPressed()) {setWorldYPos(getWorldYPos() + getSpeed());}
-        
                 if (keyHandler.getRightPressed()) {setWorldXPos(getWorldXPos() + getSpeed());}
-        
                 if (keyHandler.getLeftPressed()) {setWorldXPos(getWorldXPos() - getSpeed());}
             }
         }
