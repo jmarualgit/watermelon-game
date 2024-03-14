@@ -109,7 +109,7 @@ public class TileManager {
             int tileToDrawAsNumber = worldMapTileNumbers[currentColumnNum][currentRowNum];
             BufferedImage tileToDraw = tileImages[tileToDrawAsNumber].getImage();
 
-            // get the tile's xPos in the world as a function of tileSize and column number
+            // get the tile's xPos IN THE WORLD as a function of tileSize and column number
             int tileWorldXPos = gamePanel.getTileSize() * currentColumnNum;
             int tileWorldYPos = gamePanel.getTileSize() * currentRowNum;
 
@@ -118,7 +118,24 @@ public class TileManager {
             int tileScreenXPos = tileWorldXPos + gamePanel.getScreenXPos() - gamePanel.getPlayerWorldXPos();
             int tileScreenYPos = tileWorldYPos + gamePanel.getScreenYPos() - gamePanel.getPlayerWorldYPos();
 
-            graphics2D.drawImage(tileToDraw, tileScreenXPos, tileScreenYPos, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            // make it only render what's on the screen
+            // will first get the borders of the screen
+            int screenLeftBorderX = gamePanel.getPlayerWorldXPos() - (gamePanel.getScreenWidth() / 2);
+            int screenRightBorderX = gamePanel.getPlayerWorldXPos() + (gamePanel.getScreenWidth() / 2);
+            int screenTopBorderY = gamePanel.getPlayerWorldYPos() - (gamePanel.getScreenHeight() / 2);
+            int screenBottomBorderY = gamePanel.getPlayerWorldYPos() + (gamePanel.getScreenHeight() / 2);
+
+            // there is an empty white space so +/- 'ing will fix that empty space
+            screenLeftBorderX -= gamePanel.getTileSize();
+            screenRightBorderX += gamePanel.getTileSize();
+            screenTopBorderY -= gamePanel.getTileSize();
+            screenBottomBorderY += gamePanel.getTileSize();
+
+            // if the chosen tile's location IN THE WORLD is in the boundaries
+            if (tileWorldXPos > screenLeftBorderX && tileWorldXPos < screenRightBorderX &&
+                tileWorldYPos > screenTopBorderY && tileWorldYPos < screenBottomBorderY) {
+                graphics2D.drawImage(tileToDraw, tileScreenXPos, tileScreenYPos, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            }
 
             currentColumnNum++;
 

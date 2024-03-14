@@ -23,3 +23,7 @@ No remarkable changes; retained the same practices I had in previous commits per
 
 #### Entity.java
 I also changed from playerWorldX to worldX as I think this would be easier to understand when making different entities in the future and having entities inherit a playerWorldX even though they're not a player would make no sense.
+
+### Commit #13: Change renderer to certain boundaries
+#### Tile Manager
+Only big change is making 4 extra lines just to add tileSize. I chose to do this because looking at the original code is confusing at a first glance. Anyone can read and understand with time but I believe this will help me personally (and hopefully others) understand the code more.
