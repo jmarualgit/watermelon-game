@@ -149,7 +149,10 @@ public class TileManager {
             }
         }
     }
-
-    public static int getTileNum(int columnNum, int rowNum) {return worldMapTileNumbers[columnNum][rowNum];}
-    public static Tile getTile(int tileNum) {return tileImages[tileNum];}
+    
+    public static Tile getTile(int columnNum, int rowNum) {
+        
+        int tileNum = worldMapTileNumbers[columnNum][rowNum];
+        return tileImages[tileNum];
+    }
 }

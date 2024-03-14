@@ -26,7 +26,6 @@ public class CollisionCheck {
         int hitboxBottomBorderRowNum = hitboxBottomBorderY / gamePanel.getTileSize();
 
         // these two tiles are the two corners of the hitbox we check for collision
-        int tileOneNum, tileTwoNum;
         Tile tileOne, tileTwo;
 
         switch (gamePanel.getPlayer().getDirection()) {
@@ -36,12 +35,10 @@ public class CollisionCheck {
 
                 // both tiles have the same row number but different column number
                 // top left tile
-                tileOneNum = TileManager.getTileNum(hitboxLeftBorderColumnNum, hitboxTopBorderRowNum);
-                tileOne = TileManager.getTile(tileOneNum);
+                tileOne = TileManager.getTile(hitboxLeftBorderColumnNum, hitboxTopBorderRowNum);
 
                 // top right tile
-                tileTwoNum = TileManager.getTileNum(hitboxRightBorderColumnNum, hitboxTopBorderRowNum);
-                tileTwo = TileManager.getTile(tileTwoNum);
+                tileTwo = TileManager.getTile(hitboxRightBorderColumnNum, hitboxTopBorderRowNum);
 
                 // check if the tiles are collisionable
                 if (tileOne.isCollisionable() || tileTwo.isCollisionable()) {
@@ -55,16 +52,12 @@ public class CollisionCheck {
 
                 // both tiles have the same row number but different column numbers
                 // bottom left tile
-                tileOneNum = TileManager.getTileNum(hitboxLeftBorderColumnNum, hitboxBottomBorderRowNum);
-                tileOne = TileManager.getTile(tileOneNum);
+                tileOne = TileManager.getTile(hitboxLeftBorderColumnNum, hitboxBottomBorderRowNum);
 
                 // bottom right tile
-                tileTwoNum = TileManager.getTileNum(hitboxRightBorderColumnNum, hitboxBottomBorderRowNum);
-                tileTwo = TileManager.getTile(tileTwoNum);
+                tileTwo = TileManager.getTile(hitboxRightBorderColumnNum, hitboxBottomBorderRowNum);
 
-                if (tileOne.isCollisionable() || tileTwo.isCollisionable()) {
-                    entity.setHasCollided(true);
-                }
+                if (tileOne.isCollisionable() || tileTwo.isCollisionable()) {entity.setHasCollided(true);}
 
                 break;
             
@@ -73,16 +66,12 @@ public class CollisionCheck {
 
                 // both tiles have the same column number but different row numbers
                 // top right border
-                tileOneNum = TileManager.getTileNum(hitboxRightBorderColumnNum, hitboxTopBorderRowNum);
-                tileOne = TileManager.getTile(tileOneNum);
+                tileOne = TileManager.getTile(hitboxRightBorderColumnNum, hitboxTopBorderRowNum);
 
                 // bottom right border
-                tileTwoNum = TileManager.getTileNum(hitboxRightBorderColumnNum, hitboxBottomBorderRowNum);
-                tileTwo = TileManager.getTile(tileTwoNum);
+                tileTwo = TileManager.getTile(hitboxRightBorderColumnNum, hitboxBottomBorderRowNum);
 
-                if (tileOne.isCollisionable() || tileTwo.isCollisionable()) {
-                    entity.setHasCollided(true);
-                }
+                if (tileOne.isCollisionable() || tileTwo.isCollisionable()) {entity.setHasCollided(true);}
 
                 break;
 
@@ -91,16 +80,12 @@ public class CollisionCheck {
 
                 // these two tiles will have the same column number but different row numbers
                 // top left border
-                tileOneNum = TileManager.getTileNum(hitboxLeftBorderColumnNum, hitboxTopBorderRowNum);
-                tileOne = TileManager.getTile(tileOneNum);
+                tileOne = TileManager.getTile(hitboxLeftBorderColumnNum, hitboxTopBorderRowNum);
 
                 // bottom left border
-                tileTwoNum = TileManager.getTileNum(hitboxLeftBorderColumnNum, hitboxBottomBorderRowNum);
-                tileTwo = TileManager.getTile(tileTwoNum);
+                tileTwo = TileManager.getTile(hitboxLeftBorderColumnNum, hitboxBottomBorderRowNum);
 
-                if (tileOne.isCollisionable() || tileTwo.isCollisionable()) {
-                    entity.setHasCollided(true);
-                }
+                if (tileOne.isCollisionable() || tileTwo.isCollisionable()) {entity.setHasCollided(true);}
 
                 break;
         }
